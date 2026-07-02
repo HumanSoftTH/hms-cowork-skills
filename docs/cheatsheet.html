@@ -883,20 +883,12 @@
         <h2 class="section-title">/report — Report สำเร็จรูป</h2>
         <span class="section-cmd">/report</span>
       </div>
-      <p class="section-desc">Commission รายเดือน, Domain ที่สมัครใหม่, Lead Report, Domain หมดอายุ, Follow-up Summary</p>
+      <p class="section-desc">Domain ที่สมัครใหม่, Lead Report, Domain หมดอายุ, Follow-up Summary</p>
 
       <!-- 3.1 Prompts -->
       <div class="subsection" id="report-prompts">
         <p class="subsection-title">3.1  ตัวอย่างคำถาม — คลิกเพื่อ copy</p>
         <div class="prompt-list">
-          <div class="prompt-row" onclick="copy(this)">
-            <span class="prompt-text">commission เดือน มิ.ย. 2026 ทุก role</span>
-            <span class="prompt-copy">copy</span>
-          </div>
-          <div class="prompt-row" onclick="copy(this)">
-            <span class="prompt-text">commission เดือน มิ.ย. 2026 เฉพาะ trainer</span>
-            <span class="prompt-copy">copy</span>
-          </div>
           <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">domain ที่สมัครใหม่เดือน มิ.ย. 2026 มีกี่รายการ</span>
             <span class="prompt-copy">copy</span>
@@ -933,18 +925,6 @@
         <p class="subsection-title">3.2  พารามิเตอร์แยกตาม report</p>
 
         <div class="table-cols">
-          <div>
-            <table>
-              <thead><tr><th colspan="2">Commission</th></tr></thead>
-              <tbody>
-                <tr><td class="val">month</td><td class="desc">YYYY-MM (เช่น 2026-06)</td></tr>
-                <tr><td class="val">role: all</td><td class="desc">ทุก role (default)</td></tr>
-                <tr><td class="val">role: sale</td><td class="desc">เฉพาะ Sales</td></tr>
-                <tr><td class="val">role: trainer</td><td class="desc">เฉพาะ Trainer</td></tr>
-                <tr><td class="val">role: sale_co</td><td class="desc">เฉพาะ Sale Co.</td></tr>
-              </tbody>
-            </table>
-          </div>
           <div>
             <table>
               <thead><tr><th colspan="2">Domain Register</th></tr></thead>

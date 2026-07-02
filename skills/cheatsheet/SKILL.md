@@ -42,9 +42,9 @@ open ~/.claude/plugins/hms-cowork-skills/docs/cheatsheet.html
              "ticket เปิดค้างของลูกค้า ABC"
 
 🔹 /report — ดู report สำเร็จรูป
-   ตัวอย่าง: "commission เดือน มิ.ย. 2026"
-             "domain ที่สมัครใหม่เดือนนี้"
+   ตัวอย่าง: "domain ที่สมัครใหม่เดือนนี้"
              "domain ที่จะหมดอายุใน 30 วัน"
+             "lead report เดือน มิ.ย. 2026"
              "follow-up สัปดาห์นี้สรุปเป็นยังไง"
 
 🔹 /cheatsheet — เปิดคู่มือนี้

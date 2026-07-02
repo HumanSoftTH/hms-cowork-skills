@@ -1,6 +1,6 @@
 ---
 name: report
-description: "ดึง report สำเร็จรูปจาก ACP: Commission รายเดือน, Domain Register ใหม่, Lead report, Domain หมดอายุ, Follow-up summary"
+description: "ดึง report สำเร็จรูปจาก ACP: Domain Register ใหม่, Lead report, Domain หมดอายุ, Follow-up summary"
 ---
 
 # /report — ACP Reports Guide
@@ -14,37 +14,15 @@ description: "ดึง report สำเร็จรูปจาก ACP: Commiss
 ```
 ต้องการ report อะไรครับ?
 
-1. Commission — สรุป commission รายเดือนแยก role
-2. Domain Register — รายชื่อ domain ที่สมัครใหม่ในช่วงเวลา
-3. Lead Report — สรุป lead แยก source และ status
-4. Domain หมดอายุ — รายชื่อ domain ที่หมด / ใกล้หมดอายุ
-5. Follow-up Summary — สรุปการ follow-up ในช่วงเวลา
+1. Domain Register — รายชื่อ domain ที่สมัครใหม่ในช่วงเวลา
+2. Lead Report — สรุป lead แยก source และ status
+3. Domain หมดอายุ — รายชื่อ domain ที่หมด / ใกล้หมดอายุ
+4. Follow-up Summary — สรุปการ follow-up ในช่วงเวลา
 ```
 
 ## Step 2: รวบรวม parameters
 
-### เมนู 1: Commission Report
-
-ถาม: "ต้องการดู commission เดือนไหนครับ? (เช่น พ.ค. 2026)"
-ถาม: "ต้องการดูทุก role หรือเฉพาะ role? (sale / trainer / sale_co / all)"
-
-แปลงเดือนไทย → YYYY-MM
-แปลง role: ทุก role=all, ขาย=sale, เทรนเนอร์=trainer, sale_co=sale_co
-
-เรียก tool: **getCommissionReport**
-
-แสดงผล:
-```
-💰 Commission Report — พ.ค. 2026
-
-| ชื่อ | Role | จำนวน | Commission |
-|------|------|--------|------------|
-...
-
-ยอดรวม: ฿XXX,XXX
-```
-
-### เมนู 2: Domain Register
+### เมนู 1: Domain Register
 
 ถาม: "ต้องการดู domain ที่สมัครในช่วงไหนครับ? (เช่น 1–30 มิ.ย. 2026)"
 
@@ -55,7 +33,7 @@ description: "ดึง report สำเร็จรูปจาก ACP: Commiss
 แสดงผล: รายชื่อ domain ใหม่ พร้อมวันสมัคร, แพ็กเกจ, ช่องทาง
 สรุป: จำนวนทั้งหมด, แยก package top 3, แยก channel top 3
 
-### เมนู 3: Lead Report
+### เมนู 2: Lead Report
 
 ถาม: "ต้องการดู lead ในช่วงไหนครับ? (เช่น มิ.ย. 2026)"
 
@@ -65,7 +43,7 @@ description: "ดึง report สำเร็จรูปจาก ACP: Commiss
 
 แสดงผล: จำนวน lead แยก source, สรุป conversion rate, top channels
 
-### เมนู 4: Domain หมดอายุ
+### เมนู 3: Domain หมดอายุ
 
 ถาม: "ต้องการดู domain ที่หมดอายุในช่วงไหน? (เช่น เดือน ก.ค.–ส.ค. 2026 หรือดูทั้งหมด)"
 
@@ -75,7 +53,7 @@ description: "ดึง report สำเร็จรูปจาก ACP: Commiss
 
 แสดงผล:
 ```
-⚠️ Domain หมดอายุ / ใกล้หมดอายุ
+Domain หมดอายุ / ใกล้หมดอายุ
 
 | บริษัท | Domain | วันหมดอายุ | แพ็กเกจ | ผู้ดูแล |
 ...
@@ -83,7 +61,7 @@ description: "ดึง report สำเร็จรูปจาก ACP: Commiss
 รวม X รายการ — หมดแล้ว Y / ใกล้หมด (30 วัน) Z
 ```
 
-### เมนู 5: Follow-up Summary
+### เมนู 4: Follow-up Summary
 
 ถาม: "ต้องการดู follow-up ที่นัดในช่วงไหน? (เช่น สัปดาห์นี้ / เดือนนี้)"
 
