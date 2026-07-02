@@ -12,5 +12,19 @@
     "./skills/crm",
     "./skills/report",
     "./skills/cheatsheet"
-  ]
+  ],
+  "userConfig": {
+    "ACP_USERNAME": {
+      "type": "string",
+      "title": "ACP Username",
+      "description": "อีเมลที่ใช้ login เข้า ACP",
+      "required": true
+    },
+    "ACP_PASSWORD": {
+      "type": "string",
+      "title": "ACP Password",
+      "description": "รหัสผ่าน ACP",
+      "required": true
+    }
+  }
 }
