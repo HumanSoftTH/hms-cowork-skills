@@ -11,7 +11,8 @@
     "./skills/analytics",
     "./skills/crm",
     "./skills/report",
-    "./skills/cheatsheet"
+    "./skills/cheatsheet",
+    "./skills/acp-config"
   ],
   "userConfig": {
     "ACP_USERNAME": {
