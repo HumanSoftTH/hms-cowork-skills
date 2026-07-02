@@ -21,7 +21,15 @@ Claude Code plugin สำหรับทีม Cowork HumanSoft — ถามข
 
 ```bash
 claude plugin marketplace add https://github.com/HumanSoftTH/hms-cowork-skills
-claude plugin install hms-cowork-skills
+claude plugin install hms-cowork-skills \
+  --config ACP_USERNAME=your.email@example.com \
+  --config ACP_PASSWORD=yourpassword
+```
+
+หรือถ้าต้องการตั้งค่า credentials ภายหลัง:
+
+```bash
+/plugin configure hms-cowork-skills
 ```
 
 Restart Claude แล้วใช้งานได้เลย
@@ -67,6 +75,6 @@ follow-up สัปดาห์นี้สรุปเป็นยังไง
 
 ## Requirements
 
-- Claude Code CLI
-- MCP servers ที่ต้องการ: `acp-analytics`, `acp-crm`  
-  (ติดตั้งแยกต่างหาก — ติดต่อทีม Dev)
+- Claude Code CLI หรือ Claude cowork (web)
+- Node.js ≥ 18 (สำหรับ MCP servers ในตัว)
+- ACP username + password (บัญชี ACP เดียวกับที่ใช้ login ปกติ)
