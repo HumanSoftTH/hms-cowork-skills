@@ -20,11 +20,11 @@ if (Test-Path $htmlPath) { Start-Process $htmlPath } else { Write-Output "NOT_FO
 **Mac/Linux:**
 ```bash
 python3 -c "
-import json,os,subprocess
+import json,os,webbrowser
 d=json.load(open(os.path.expanduser('~/.claude/plugins/installed_plugins.json')))
 path=d['plugins']['hms-cowork-skills@hms-cowork-skills'][0]['installPath']
 html=os.path.join(path,'docs','cheatsheet.html')
-if os.path.exists(html): subprocess.run(['open',html])
+if os.path.exists(html): webbrowser.open('file://'+html)
 else: print('NOT_FOUND:'+html)
 "
 ```
@@ -58,6 +58,8 @@ else: print('NOT_FOUND:'+html)
              "follow-up สัปดาห์นี้สรุปเป็นยังไง"
 
 🔹 /cheatsheet — เปิดคู่มือนี้
+
+🔹 /acp-config — ตั้งค่า ACP username/password
 
 💡 เคล็ดลับ: พิมพ์คำถามธรรมชาติได้เลย ไม่ต้องพิมพ์ /skill ก็ได้
    เช่น "ดู funnel เดือน ม.ค.–มิ.ย." Claude จะรู้ว่าต้องใช้ /analytics

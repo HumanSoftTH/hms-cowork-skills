@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "hms-cowork-skills",
-      "description": "4 skills: /analytics (Funnel, Cohort, Key Metrics, Success Call), /crm (ค้นหาลูกค้า, follow-up, ticket), /report (domain, lead, follow-up), /cheatsheet (เปิดคู่มือ). ใช้ภาษาไทยได้เลย",
+      "description": "5 skills: /analytics (Funnel, Cohort, Key Metrics, Success Call), /crm (ค้นหาลูกค้า, follow-up, ticket), /report (domain, lead, follow-up), /cheatsheet (เปิดคู่มือ), /acp-config (ตั้งค่า credentials). ใช้ภาษาไทยได้เลย",
       "author": {
         "name": "HumanSoft",
         "email": "sahakorn.b@humansoft.co.th"
