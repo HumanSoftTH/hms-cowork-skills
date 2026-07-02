@@ -1,0 +1,15 @@
+{
+  "name": "hms-cowork-skills",
+  "owner": {
+    "name": "HumanSoft",
+    "email": "sahakorn.b@humansoft.co.th"
+  },
+  "description": "ACP Cowork Skills สำหรับทีม non-dev — analytics, CRM, reports และ cheatsheet คู่มือ",
+  "plugins": [
+    {
+      "name": "hms-cowork-skills",
+      "source": ".",
+      "description": "4 skills: /analytics (Funnel, Cohort, Key Metrics, Success Call), /crm (ค้นหาลูกค้า, follow-up, ticket), /report (commission, domain, lead), /cheatsheet (เปิดคู่มือ). ใช้ภาษาไทยได้เลย"
+    }
+  ]
+}
