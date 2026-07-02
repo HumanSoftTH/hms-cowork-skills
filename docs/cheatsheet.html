@@ -3,34 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ACP Cowork Skills — คู่มือการใช้งาน</title>
+<title>ACP Cowork Skills — Reference Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sarabun:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Sarabun:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ground:      #EEF2F8;
-    --ground-2:    #E2E8F2;
-    --surface:     #FFFFFF;
-    --hero:        #0A1929;
-    --hero-2:      #0F2440;
-    --text:        #1E293B;
-    --text-muted:  #64748B;
-    --text-faint:  #94A3B8;
-    --accent:      #F59E0B;
-    --accent-dim:  #FEF3C7;
-    --cmd:         #059669;
-    --cmd-dim:     #D1FAE5;
-    --cmd-dark:    #065F46;
-    --border:      #CBD5E1;
-    --analytics:   #3B82F6;
-    --analytics-dim:#DBEAFE;
-    --crm:         #8B5CF6;
-    --crm-dim:     #EDE9FE;
-    --report:      #F59E0B;
-    --report-dim:  #FEF3C7;
-  }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ground:  #FFFFFF;
+    --text:    #111111;
+    --muted:   #555555;
+    --faint:   #999999;
+    --rule:    #CACACA;
+    --rule-hv: #888888;
+    --code-bg: #F4F4F4;
+  }
 
   html { scroll-behavior: smooth; }
 
@@ -39,833 +26,1113 @@
     font-weight: 400;
     background: var(--ground);
     color: var(--text);
+    font-size: 14.5px;
     line-height: 1.65;
-    font-size: 15px;
   }
 
-  /* ── Hero ─────────────────────────────────────────── */
-  .hero {
-    background: var(--hero);
-    color: #fff;
-    padding: 56px 40px 48px;
+  /* ── Masthead ──────────────────────────────────────── */
+  .masthead {
+    padding: 40px 48px 28px;
+    border-bottom: 2px solid var(--text);
   }
 
-  .hero-inner {
-    max-width: 1100px;
-    margin: 0 auto;
+  .masthead-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
   }
 
-  .hero-eyebrow {
+  .masthead-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 14px;
+  }
+
+  .masthead-sub {
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .masthead-skills {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+
+  /* ── Page body ─────────────────────────────────────── */
+  .page-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    min-height: 100vh;
+  }
+
+  @media (max-width: 768px) {
+    .page-layout { grid-template-columns: 1fr; }
+    .toc-aside { display: none; }
+    .masthead { padding: 28px 24px 20px; }
+    .content-main { padding: 32px 24px; }
+  }
+
+  /* ── TOC ───────────────────────────────────────────── */
+  .toc-aside {
+    border-right: 1px solid var(--rule);
+    padding: 32px 24px 32px 48px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    align-self: start;
+  }
+
+  .toc-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--faint);
     margin-bottom: 16px;
   }
 
-  .hero-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
-  }
-
-  .hero-title span {
-    color: var(--accent);
-  }
-
-  .hero-sub {
-    font-size: 16px;
-    color: #94A3B8;
-    max-width: 560px;
-    margin-bottom: 40px;
-    line-height: 1.6;
-  }
-
-  /* Skill pills nav */
-  .skill-nav {
+  .toc-list {
+    list-style: none;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
+    gap: 2px;
   }
 
-  .skill-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    font-weight: 500;
+  .toc-list a {
+    display: block;
     text-decoration: none;
-    transition: opacity 0.15s;
-    border: 1.5px solid transparent;
+    color: var(--muted);
+    font-size: 12.5px;
+    padding: 3px 0;
+    border-bottom: none;
+    transition: color 0.1s;
   }
-  .skill-pill:hover { opacity: 0.85; }
-  .skill-pill-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: currentColor;
-    opacity: 0.6;
-  }
+  .toc-list a:hover { color: var(--text); }
 
-  .pill-analytics { background: rgba(59,130,246,0.15); color: #93C5FD; border-color: rgba(59,130,246,0.3); }
-  .pill-crm       { background: rgba(139,92,246,0.15); color: #C4B5FD; border-color: rgba(139,92,246,0.3); }
-  .pill-report    { background: rgba(245,158,11,0.15); color: #FCD34D; border-color: rgba(245,158,11,0.3); }
-  .pill-cheatsheet{ background: rgba(16,185,129,0.12); color: #6EE7B7; border-color: rgba(16,185,129,0.3); }
+  .toc-section { font-weight: 600; color: var(--text); margin-top: 10px; }
+  .toc-section:first-child { margin-top: 0; }
 
-  /* ── Layout wrapper ──────────────────────────────── */
-  .page-body {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 48px 40px 80px;
+  .toc-sub {
+    padding-left: 12px;
+    font-size: 12px;
+    color: var(--faint);
   }
 
-  /* ── Section ─────────────────────────────────────── */
-  .skill-section {
+  /* ── Content ───────────────────────────────────────── */
+  .content-main {
+    padding: 40px 64px 80px 48px;
+    max-width: 860px;
+  }
+
+  /* Section */
+  .section {
     margin-bottom: 64px;
+    padding-bottom: 0;
   }
 
   .section-header {
     display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 28px;
-    padding-bottom: 16px;
-    border-bottom: 1.5px solid var(--border);
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid var(--text);
   }
 
-  .cmd-badge {
+  .section-number {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 6px 14px;
-    border-radius: 6px;
-    letter-spacing: 0.01em;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--faint);
+    flex-shrink: 0;
   }
-  .badge-analytics { background: var(--analytics-dim); color: var(--analytics); }
-  .badge-crm       { background: var(--crm-dim);       color: var(--crm); }
-  .badge-report    { background: var(--report-dim);    color: #92400E; }
-  .badge-cheatsheet{ background: var(--cmd-dim);       color: var(--cmd-dark); }
 
   .section-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 20px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
     font-weight: 700;
-    color: var(--text);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .section-cmd {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: auto;
+    flex-shrink: 0;
   }
 
   .section-desc {
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-top: 2px;
-  }
-
-  /* Two-column card */
-  .skill-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  }
-
-  @media (max-width: 720px) {
-    .skill-card { grid-template-columns: 1fr; }
-    .card-chat { border-left: none !important; border-top: 1px solid var(--border); }
-    .page-body { padding: 32px 20px 64px; }
-    .hero { padding: 40px 20px 36px; }
-  }
-
-  /* Left: prompts */
-  .card-prompts {
-    padding: 28px 28px 28px;
-  }
-
-  .prompts-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    margin-bottom: 16px;
-  }
-
-  .prompt-group {
-    margin-bottom: 20px;
-  }
-
-  .prompt-group-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .prompt-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 9px 12px;
-    margin-bottom: 5px;
-    background: var(--ground);
-    border-radius: 7px;
-    cursor: pointer;
-    transition: background 0.12s;
-    border: 1px solid transparent;
-  }
-  .prompt-item:hover {
-    background: var(--ground-2);
-    border-color: var(--border);
-  }
-
-  .prompt-icon {
-    font-size: 13px;
-    flex-shrink: 0;
-    margin-top: 1px;
-    opacity: 0.7;
-  }
-
-  .prompt-text {
     font-size: 13.5px;
-    color: var(--text);
-    line-height: 1.5;
-    flex: 1;
+    color: var(--muted);
+    margin-bottom: 28px;
+    line-height: 1.6;
   }
 
-  .copy-hint {
-    font-size: 10px;
-    color: var(--text-faint);
-    flex-shrink: 0;
-    margin-top: 3px;
-    opacity: 0;
-    transition: opacity 0.12s;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-  .prompt-item:hover .copy-hint { opacity: 1; }
-
-  /* Right: chat mockup */
-  .card-chat {
-    border-left: 1px solid var(--border);
-    background: #F8FAFC;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
+  /* Subsection */
+  .subsection {
+    margin-bottom: 36px;
   }
 
-  .chat-topbar {
-    padding: 12px 18px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--surface);
-  }
-
-  .chat-dots { display: flex; gap: 5px; }
-  .chat-dot {
-    width: 9px; height: 9px;
-    border-radius: 50%;
-    background: var(--border);
-  }
-
-  .chat-label {
+  .subsection-title {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
-    color: var(--text-faint);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--rule);
   }
 
-  .chat-body {
-    padding: 20px 18px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .chat-bubble {
-    max-width: 88%;
-    border-radius: 10px;
-    padding: 10px 14px;
-    font-size: 13px;
-    line-height: 1.55;
-  }
-
-  .bubble-user {
-    align-self: flex-end;
-    background: var(--hero);
-    color: #E2E8F0;
-    border-bottom-right-radius: 3px;
-  }
-
-  .bubble-claude {
-    align-self: flex-start;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
-    border-bottom-left-radius: 3px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-  }
-
-  .bubble-list {
-    list-style: none;
-    margin-top: 6px;
+  /* Prompt list */
+  .prompt-list {
     display: flex;
     flex-direction: column;
     gap: 3px;
   }
-  .bubble-list li::before {
-    content: "›  ";
-    color: var(--accent);
-    font-weight: 600;
-  }
 
-  .bubble-tag {
-    display: inline-block;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    padding: 1px 7px;
-    border-radius: 4px;
-    margin: 0 1px;
-  }
-  .tag-analytics { background: var(--analytics-dim); color: var(--analytics); }
-  .tag-crm       { background: var(--crm-dim);       color: var(--crm); }
-  .tag-cmd       { background: var(--cmd-dim);        color: var(--cmd-dark); }
-
-  .chat-typing {
-    align-self: flex-start;
+  .prompt-row {
     display: flex;
-    gap: 4px;
-    padding: 12px 16px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    border-bottom-left-radius: 3px;
+    align-items: baseline;
+    gap: 12px;
+    padding: 6px 10px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: border-color 0.1s, background 0.1s;
   }
-  .typing-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--text-faint);
-    animation: blink 1.4s infinite;
-  }
-  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-  @keyframes blink {
-    0%, 60%, 100% { opacity: 0.3; }
-    30% { opacity: 1; }
+  .prompt-row:hover {
+    border-color: var(--rule);
+    background: var(--code-bg);
   }
 
-  /* ── Tips strip ──────────────────────────────────── */
-  .tips-strip {
-    background: var(--hero);
-    border-radius: 12px;
-    padding: 28px 32px;
-    margin-bottom: 64px;
+  .prompt-text {
+    font-size: 13.5px;
+    flex: 1;
+    line-height: 1.5;
   }
 
-  .tips-label {
+  .prompt-copy {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    opacity: 0;
+    flex-shrink: 0;
+    transition: opacity 0.1s;
+  }
+  .prompt-row:hover .prompt-copy { opacity: 1; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  thead tr {
+    border-top: 1.5px solid var(--text);
+    border-bottom: 1px solid var(--text);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  tbody tr:last-child {
+    border-bottom: 1.5px solid var(--text);
+  }
+
+  th {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
+    font-weight: 500;
+    padding: 8px 12px 6px;
+    text-align: left;
+    color: var(--muted);
   }
 
-  .tips-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
+  td {
+    padding: 7px 12px;
+    vertical-align: top;
+    line-height: 1.5;
   }
 
-  .tip-item {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-
-  .tip-icon {
-    font-size: 18px;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .tip-text {
-    font-size: 13px;
-    color: #94A3B8;
-    line-height: 1.55;
-  }
-
-  .tip-text strong {
-    color: #CBD5E1;
-    font-weight: 600;
-  }
-
-  /* ── Footer ──────────────────────────────────────── */
-  .footer {
-    text-align: center;
-    padding: 24px 0 8px;
-    border-top: 1px solid var(--border);
+  td:first-child {
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
-    color: var(--text-faint);
-    font-family: 'IBM Plex Mono', monospace;
+    white-space: nowrap;
+    color: var(--text);
   }
 
-  /* ── Copy feedback ───────────────────────────────── */
-  .copied-toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%) translateY(8px);
-    background: var(--hero);
-    color: #E2E8F0;
-    padding: 8px 18px;
-    border-radius: 20px;
-    font-size: 13px;
+  td.val {
     font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text);
+  }
+
+  td.desc {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  /* Inline code */
+  code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    background: var(--code-bg);
+    padding: 1px 5px;
+    border: 1px solid var(--rule);
+  }
+
+  /* Note box */
+  .note {
+    border-left: 2px solid var(--text);
+    padding: 10px 14px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .note strong { color: var(--text); font-weight: 600; }
+
+  /* Two-column table layout */
+  .table-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 4px;
+  }
+
+  @media (max-width: 600px) { .table-cols { grid-template-columns: 1fr; } }
+
+  /* Full-width thin rule divider */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 48px 0;
+  }
+
+  /* Month grid */
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1.5px solid var(--text);
+    border-bottom: 1.5px solid var(--text);
+  }
+
+  .month-cell {
+    padding: 7px 10px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    font-size: 13px;
+  }
+  .month-cell:nth-child(4n) { border-right: none; }
+  .month-cell:nth-last-child(-n+4) { border-bottom: none; }
+
+  .month-abbr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  .month-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* Tips */
+  .tip-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tip-list li {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 8px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .tip-list li:last-child { border-bottom: none; }
+
+  .tip-n {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--faint);
+    padding-top: 2px;
+  }
+
+  .tip-body strong { font-weight: 600; }
+
+  /* Copy toast */
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    background: var(--text);
+    color: var(--ground);
+    padding: 6px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
     opacity: 0;
-    transition: opacity 0.2s, transform 0.2s;
+    transition: opacity 0.18s, transform 0.18s;
     pointer-events: none;
     z-index: 100;
-    border: 1px solid #334155;
   }
-  .copied-toast.show {
+  .toast.show {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
   }
 
+  @media print {
+    .toc-aside { position: static; height: auto; }
+    .page-layout { display: block; }
+    .prompt-copy { display: none; }
+    .toast { display: none; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .typing-dot { animation: none; opacity: 0.4; }
-    .copied-toast { transition: none; }
+    .toast { transition: none; }
+    .prompt-row { transition: none; }
   }
 </style>
 </head>
 <body>
 
-<!-- Hero -->
-<header class="hero">
-  <div class="hero-inner">
-    <p class="hero-eyebrow">HumanSoft ACP · Cowork Skills</p>
-    <h1 class="hero-title">ถาม Claude<br>ให้ได้ <span>ข้อมูล ACP</span></h1>
-    <p class="hero-sub">พิมพ์ตามตัวอย่างด้านล่าง หรือถามเป็นภาษาธรรมชาติได้เลย<br>ไม่ต้องรู้ชื่อ API หรือ parameter ใดๆ</p>
-    <nav class="skill-nav" aria-label="skills">
-      <a href="#analytics" class="skill-pill pill-analytics"><span class="skill-pill-dot"></span>/analytics</a>
-      <a href="#crm"       class="skill-pill pill-crm"><span class="skill-pill-dot"></span>/crm</a>
-      <a href="#report"    class="skill-pill pill-report"><span class="skill-pill-dot"></span>/report</a>
-      <a href="#cheatsheet" class="skill-pill pill-cheatsheet"><span class="skill-pill-dot"></span>/cheatsheet</a>
-    </nav>
+<!-- Masthead -->
+<header class="masthead">
+  <div class="masthead-meta">
+    <span>HumanSoft · ACP Cowork Skills</span>
+    <span>Reference Guide · Vol. 1 · 2026</span>
+  </div>
+  <h1 class="masthead-title">Claude Cowork<br>Reference Guide</h1>
+  <div class="masthead-sub">
+    <span>คู่มือสำหรับทีม Cowork — ถาม Claude เป็นภาษาไทยได้เลย ไม่ต้องรู้ API</span>
+    <span class="masthead-skills">/analytics · /crm · /report · /cheatsheet</span>
   </div>
 </header>
 
-<main class="page-body">
+<!-- Body: TOC + Content -->
+<div class="page-layout">
 
-  <!-- Tips strip -->
-  <div class="tips-strip" role="note">
-    <p class="tips-label">วิธีใช้</p>
-    <div class="tips-grid">
-      <div class="tip-item">
-        <span class="tip-icon">💬</span>
-        <p class="tip-text"><strong>ถามธรรมชาติได้เลย</strong> ไม่ต้องพิมพ์ /skill ก็ได้ เช่น "ดู funnel เดือนนี้" Claude จะรู้เองว่าต้องทำอะไร</p>
-      </div>
-      <div class="tip-item">
-        <span class="tip-icon">📋</span>
-        <p class="tip-text"><strong>คลิก prompt เพื่อ copy</strong> แล้ว paste ใน Claude cowork ได้เลย ปรับวันที่/ชื่อตามต้องการ</p>
-      </div>
-      <div class="tip-item">
-        <span class="tip-icon">🔍</span>
-        <p class="tip-text"><strong>ถาม drilldown ต่อได้</strong> หลังได้ตัวเลขแล้ว ถาม "ขอดูรายละเอียดของเดือน มิ.ย." Claude จะเจาะลงไปให้</p>
-      </div>
-      <div class="tip-item">
-        <span class="tip-icon">📅</span>
-        <p class="tip-text"><strong>บอกช่วงเวลาได้หลายแบบ</strong> "เดือนที่แล้ว" "Q1 2026" "สัปดาห์ที่ 1–13" Claude แปลงให้อัตโนมัติ</p>
-      </div>
-    </div>
-  </div>
+  <!-- TOC -->
+  <aside class="toc-aside" aria-label="สารบัญ">
+    <p class="toc-label">สารบัญ</p>
+    <ul class="toc-list">
+      <li><a href="#analytics" class="toc-section">§1  /analytics</a></li>
+      <li><a href="#analytics-prompts" class="toc-sub">ตัวอย่างคำถาม</a></li>
+      <li><a href="#analytics-params" class="toc-sub">พารามิเตอร์</a></li>
+      <li><a href="#analytics-cohort" class="toc-sub">Cohort types</a></li>
+      <li><a href="#analytics-metrics" class="toc-sub">Key Metrics topics</a></li>
+      <li><a href="#analytics-drilldown" class="toc-sub">Drilldown</a></li>
 
-  <!-- ── /analytics ──────────────────────────────── -->
-  <section class="skill-section" id="analytics">
-    <div class="section-header">
-      <span class="cmd-badge badge-analytics">/analytics</span>
-      <div>
-        <h2 class="section-title">วิเคราะห์ข้อมูล Administrator</h2>
-        <p class="section-desc">Funnel, Cohort, Key Metrics, Success Call Performance พร้อม drilldown รายละเอียด</p>
-      </div>
-    </div>
-    <div class="skill-card">
-      <!-- Prompts -->
-      <div class="card-prompts">
-        <p class="prompts-label">ตัวอย่าง prompt — คลิกเพื่อ copy</p>
+      <li><a href="#crm" class="toc-section">§2  /crm</a></li>
+      <li><a href="#crm-prompts" class="toc-sub">ตัวอย่างคำถาม</a></li>
+      <li><a href="#crm-functions" class="toc-sub">ฟังก์ชัน</a></li>
 
-        <div class="prompt-group">
-          <p class="prompt-group-title">Funnel รายเดือน</p>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">📊</span>
+      <li><a href="#report" class="toc-section">§3  /report</a></li>
+      <li><a href="#report-prompts" class="toc-sub">ตัวอย่างคำถาม</a></li>
+      <li><a href="#report-params" class="toc-sub">พารามิเตอร์</a></li>
+
+      <li><a href="#dates" class="toc-section">§4  การแปลงวันที่</a></li>
+      <li><a href="#tips" class="toc-section">§5  เคล็ดลับ</a></li>
+      <li><a href="#install" class="toc-section">§6  ติดตั้ง</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main content -->
+  <main class="content-main">
+
+    <!-- §1 /analytics -->
+    <section class="section" id="analytics">
+      <div class="section-header">
+        <span class="section-number">§1</span>
+        <h2 class="section-title">/analytics — วิเคราะห์ข้อมูล</h2>
+        <span class="section-cmd">/analytics</span>
+      </div>
+      <p class="section-desc">ดึงข้อมูล Funnel รายเดือน, Cohort Conversion, Key Metrics (Financial / Conversion / Retention / Marketing) และ Success Call Performance พร้อม drilldown รายละเอียดของแต่ละตัวเลข</p>
+
+      <!-- 1.1 Prompts -->
+      <div class="subsection" id="analytics-prompts">
+        <p class="subsection-title">1.1  ตัวอย่างคำถาม — คลิกเพื่อ copy</p>
+        <div class="prompt-list">
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">ดู funnel ม.ค.–มิ.ย. 2026 เฉพาะ HumanSoft สรุปให้หน่อย</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">📊</span>
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">funnel Q2 2026 ทั้งหมด แยก size S M L เทียบกัน</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-        </div>
-
-        <div class="prompt-group">
-          <p class="prompt-group-title">Cohort Conversion</p>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">🔄</span>
+          <div class="prompt-row" onclick="copy(this)">
+            <span class="prompt-text">funnel ปี 2026 เฉพาะบริษัทขนาดใหญ่ (201+ คน) ฐาน % จาก Prospect</span>
+            <span class="prompt-copy">copy</span>
+          </div>
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">cohort สมัครแล้วจ่ายเงิน ม.ค.–มิ.ย. 2026 เป็น % conversion</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">🔄</span>
-            <span class="prompt-text">cohort setup to success payroll ปี 2026 ดูจำนวน domain</span>
-            <span class="copy-hint">copy</span>
+          <div class="prompt-row" onclick="copy(this)">
+            <span class="prompt-text">cohort setup to success payroll ปี 2025 ดูจำนวน domain</span>
+            <span class="prompt-copy">copy</span>
           </div>
-        </div>
-
-        <div class="prompt-group">
-          <p class="prompt-group-title">Key Metrics รายปี</p>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">💹</span>
+          <div class="prompt-row" onclick="copy(this)">
+            <span class="prompt-text">cohort training to first payroll Q1 2026 เฉพาะ size M</span>
+            <span class="prompt-copy">copy</span>
+          </div>
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">Financial key metrics ปี 2026 สรุปตัวเลขสำคัญ</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">💹</span>
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">Retention metrics ปี 2026 ดู churn และ drop-off by status</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">📣</span>
-            <span class="prompt-text">Marketing key metrics ปี 2026 เฉพาะ Facebook กับ Google</span>
-            <span class="copy-hint">copy</span>
+          <div class="prompt-row" onclick="copy(this)">
+            <span class="prompt-text">Conversion metrics ปี 2026 ดู rejection stage และ squad performance</span>
+            <span class="prompt-copy">copy</span>
           </div>
-        </div>
-
-        <div class="prompt-group">
-          <p class="prompt-group-title">Success Call Performance</p>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">📞</span>
+          <div class="prompt-row" onclick="copy(this)">
+            <span class="prompt-text">Marketing metrics ปี 2026 เฉพาะ Facebook กับ Google</span>
+            <span class="prompt-copy">copy</span>
+          </div>
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">success call performance สัปดาห์ที่ 1–26 ปี 2026</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">🔬</span>
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">ขอดูรายชื่อ domain เบื้องหลัง funnel เดือน เม.ย. stage Paid</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
+          </div>
+          <div class="prompt-row" onclick="copy(this)">
+            <span class="prompt-text">drilldown cohort สมัครแล้วจ่าย เดือน ม.ค. 2026 คอลัมน์ M1</span>
+            <span class="prompt-copy">copy</span>
           </div>
         </div>
       </div>
 
-      <!-- Chat mockup -->
-      <div class="card-chat">
-        <div class="chat-topbar">
-          <div class="chat-dots">
-            <div class="chat-dot"></div>
-            <div class="chat-dot"></div>
-            <div class="chat-dot"></div>
+      <!-- 1.2 Parameters -->
+      <div class="subsection" id="analytics-params">
+        <p class="subsection-title">1.2  พารามิเตอร์ทั่วไป</p>
+
+        <div class="table-cols">
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>agent_group</th>
+                  <th>ความหมาย</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>all</td><td class="desc">ทั้งหมด (default)</td></tr>
+                <tr><td>humansoft</td><td class="desc">เฉพาะ HumanSoft</td></tr>
+                <tr><td>dealer</td><td class="desc">เฉพาะ Dealer</td></tr>
+              </tbody>
+            </table>
           </div>
-          <span class="chat-label">Claude cowork · analytics-mcp</span>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>sizing</th>
+                  <th>ความหมาย</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>all_size</td><td class="desc">ทั้งหมด (default)</td></tr>
+                <tr><td>size_s</td><td class="desc">1–75 คน (รวมไม่ระบุ)</td></tr>
+                <tr><td>size_m</td><td class="desc">76–200 คน</td></tr>
+                <tr><td>size_l</td><td class="desc">201+ คน</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="chat-body">
-          <div class="chat-bubble bubble-user">ดู funnel ม.ค.–มิ.ย. 2026 เฉพาะ HumanSoft สรุปให้หน่อย</div>
-          <div class="chat-bubble bubble-claude">
-            กำลังดึงข้อมูล Funnel จาก ACP…<br><br>
-            <strong>📊 Funnel Report — ม.ค.–มิ.ย. 2026</strong><br>
-            <span class="bubble-tag tag-analytics">HumanSoft</span> <span class="bubble-tag tag-analytics">All Size</span> <span class="bubble-tag tag-analytics">ฐาน Register</span><br><br>
-            <ul class="bubble-list">
-              <li>เดือนที่ดีที่สุด: เม.ย. — Paid Rate <strong>15.5%</strong></li>
-              <li>เดือนที่ต่ำสุด: ม.ค. — Paid Rate <strong>12.2%</strong></li>
-              <li>เฉลี่ย 6 เดือน: <strong>13.8%</strong></li>
-            </ul><br>
-            Q2 มี conversion สูงกว่า Q1 ประมาณ 2.5% น่าสังเกต ต้องการดู drilldown เดือนไหนไหมครับ?
+
+        <div style="margin-top: 16px;">
+          <table>
+            <thead>
+              <tr>
+                <th>pct_base</th>
+                <th>ความหมาย</th>
+                <th>ใช้กับ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>register</td><td class="desc">ฐานจาก Register (default)</td><td class="desc">Funnel</td></tr>
+              <tr><td>prospect</td><td class="desc">ฐานจาก Prospect</td><td class="desc">Funnel</td></tr>
+              <tr><td>success_call</td><td class="desc">ฐานจาก Success Call</td><td class="desc">Funnel</td></tr>
+              <tr><td>setup</td><td class="desc">ฐานจาก Setup</td><td class="desc">Funnel</td></tr>
+              <tr><td>training</td><td class="desc">ฐานจาก Training</td><td class="desc">Funnel</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 1.3 Cohort types -->
+      <div class="subsection" id="analytics-cohort">
+        <p class="subsection-title">1.3  Cohort — ประเภทที่รองรับ (data_type)</p>
+        <table>
+          <thead>
+            <tr>
+              <th>ประเภท</th>
+              <th>ความหมาย</th>
+              <th>หมวด</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>register_to_paid</td><td class="desc">สมัครแล้วจ่ายเงิน</td><td class="desc">New Customer</td></tr>
+            <tr><td>register_to_meeting</td><td class="desc">สมัครแล้ว demo/training</td><td class="desc">New Customer</td></tr>
+            <tr><td>meeting_to_paid</td><td class="desc">demo/training แล้วจ่ายเงิน</td><td class="desc">New Customer</td></tr>
+            <tr><td>paid_to_register</td><td class="desc">จ่ายแล้วสมัครเพิ่ม</td><td class="desc">New Customer</td></tr>
+            <tr><td>paid_to_meeting</td><td class="desc">จ่ายแล้ว meeting</td><td class="desc">New Customer</td></tr>
+            <tr><td>setup_to_success_payroll</td><td class="desc">Setup ถึง Success Payroll</td><td class="desc">Onboarding</td></tr>
+            <tr><td>setup_to_first_payroll</td><td class="desc">Setup ถึง First Payroll</td><td class="desc">Onboarding</td></tr>
+            <tr><td>setup_to_training</td><td class="desc">Setup ถึง Training</td><td class="desc">Onboarding</td></tr>
+            <tr><td>training_to_success_payroll</td><td class="desc">Training ถึง Success Payroll</td><td class="desc">Onboarding</td></tr>
+            <tr><td>training_to_first_payroll</td><td class="desc">Training ถึง First Payroll</td><td class="desc">Onboarding</td></tr>
+            <tr><td>first_payroll_to_success_payroll</td><td class="desc">First Payroll ถึง Success Payroll</td><td class="desc">Onboarding</td></tr>
+          </tbody>
+        </table>
+        <p class="note">display_type: <code>domain_count</code> = จำนวน domain (default) · <code>conversion_rate</code> = % conversion<br>
+        column_key สำหรับ drilldown: <code>All</code> · <code>M0</code> · <code>M1</code> · <code>M2</code> · <code>Total</code> (ค่าจาก column ในตาราง cohort)</p>
+      </div>
+
+      <!-- 1.4 Key Metrics topics -->
+      <div class="subsection" id="analytics-metrics">
+        <p class="subsection-title">1.4  Key Metrics — Topics ที่รองรับ</p>
+
+        <div class="table-cols">
+          <div>
+            <table>
+              <thead><tr><th colspan="2">Financial</th></tr></thead>
+              <tbody>
+                <tr><td class="val">domain</td><td class="desc">จำนวน domain</td></tr>
+                <tr><td class="val">company</td><td class="desc">จำนวนบริษัท</td></tr>
+                <tr><td class="val">employee</td><td class="desc">จำนวน employee</td></tr>
+                <tr><td class="val">revenue</td><td class="desc">Revenue รวม</td></tr>
+                <tr><td class="val">cash</td><td class="desc">Cash รวม</td></tr>
+                <tr><td class="val">new_cash</td><td class="desc">Cash ใหม่</td></tr>
+                <tr><td class="val">old_cash</td><td class="desc">Cash ต่ออายุ</td></tr>
+                <tr><td class="val">revenue_recurring</td><td class="desc">Recurring revenue</td></tr>
+                <tr><td class="val">active_domain</td><td class="desc">Domain active</td></tr>
+                <tr><td class="val">average_price</td><td class="desc">ราคาเฉลี่ย</td></tr>
+                <tr><td class="val">drop_off_by_distributed</td><td class="desc">Drop-off แบ่งตาม dist.</td></tr>
+              </tbody>
+            </table>
           </div>
-          <div class="chat-bubble bubble-user" style="font-size:12.5px;opacity:0.8;">ขอดูรายละเอียด domain เดือน เม.ย. stage Paid</div>
-          <div class="chat-typing" aria-label="Claude กำลังพิมพ์">
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
+          <div>
+            <table>
+              <thead><tr><th colspan="2">Conversion</th></tr></thead>
+              <tbody>
+                <tr><td class="val">domain</td><td class="desc">Domain ใหม่</td></tr>
+                <tr><td class="val">domain_miss_out</td><td class="desc">Domain miss out</td></tr>
+                <tr><td class="val">domain_in_pipeline</td><td class="desc">Domain ใน pipeline</td></tr>
+                <tr><td class="val">reject_remark</td><td class="desc">Reject remark</td></tr>
+                <tr><td class="val">rejection_stage</td><td class="desc">Stage ที่ reject</td></tr>
+                <tr><td class="val">call_logs</td><td class="desc">Call logs รวม</td></tr>
+                <tr><td class="val">call_log_type</td><td class="desc">Call logs แยกประเภท</td></tr>
+                <tr><td class="val">followup</td><td class="desc">Follow-up รวม</td></tr>
+                <tr><td class="val">followup_type</td><td class="desc">Follow-up แยกประเภท</td></tr>
+                <tr><td class="val">new_cash</td><td class="desc">New cash</td></tr>
+                <tr><td class="val">expectation</td><td class="desc">Expectation</td></tr>
+                <tr><td class="val">forecast</td><td class="desc">Forecast</td></tr>
+                <tr><td class="val">squad_performance</td><td class="desc">ผลงาน squad</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="table-cols" style="margin-top: 16px;">
+          <div>
+            <table>
+              <thead><tr><th colspan="2">Retention</th></tr></thead>
+              <tbody>
+                <tr><td class="val">domain_active_level</td><td class="desc">ระดับ active</td></tr>
+                <tr><td class="val">drop_off_by_status</td><td class="desc">Drop-off แยก status</td></tr>
+                <tr><td class="val">dropoff_reason</td><td class="desc">เหตุผล drop-off</td></tr>
+                <tr><td class="val">ticket_inquiry</td><td class="desc">Ticket inquiry</td></tr>
+                <tr><td class="val">ticket_incident</td><td class="desc">Ticket incident</td></tr>
+                <tr><td class="val">ticket_inquiry_topic</td><td class="desc">Topic inquiry</td></tr>
+                <tr><td class="val">ticket_inquiry_survey</td><td class="desc">Survey inquiry</td></tr>
+                <tr><td class="val">renewal_task</td><td class="desc">Renewal task</td></tr>
+                <tr><td class="val">renewal_survey</td><td class="desc">Renewal survey</td></tr>
+                <tr><td class="val">incident</td><td class="desc">Incident (no_size)</td></tr>
+                <tr><td class="val">old_cash</td><td class="desc">Old cash</td></tr>
+                <tr><td class="val">expectation</td><td class="desc">Expectation</td></tr>
+                <tr><td class="val">goal</td><td class="desc">Goal (no_size)</td></tr>
+                <tr><td class="val">rejection_stage</td><td class="desc">Rejection stage</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <table>
+              <thead><tr><th colspan="2">Marketing (บางส่วน)</th></tr></thead>
+              <tbody>
+                <tr><td class="val">facebook_lead</td><td class="desc">Lead จาก Facebook</td></tr>
+                <tr><td class="val">google_lead</td><td class="desc">Lead จาก Google</td></tr>
+                <tr><td class="val">tiktok_lead</td><td class="desc">Lead จาก TikTok</td></tr>
+                <tr><td class="val">line_lead</td><td class="desc">Lead จาก LINE</td></tr>
+                <tr><td class="val">web_lead</td><td class="desc">Lead จาก Website</td></tr>
+                <tr><td class="val">event_lead</td><td class="desc">Lead จาก Event</td></tr>
+                <tr><td class="val">paid_customer</td><td class="desc">ลูกค้าที่จ่ายแล้ว</td></tr>
+                <tr><td class="val">cpl</td><td class="desc">Cost per lead</td></tr>
+                <tr><td class="val">cpa</td><td class="desc">Cost per acquisition</td></tr>
+                <tr><td class="val">roas</td><td class="desc">Return on ad spend</td></tr>
+              </tbody>
+            </table>
+            <p class="note" style="margin-top: 8px;">บอกชื่อ channel เป็นภาษาไทยได้เลย เช่น "เฉพาะ Facebook กับ TikTok" Claude จะแปลงให้</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ── /crm ──────────────────────────────────────── -->
-  <section class="skill-section" id="crm">
-    <div class="section-header">
-      <span class="cmd-badge badge-crm">/crm</span>
-      <div>
-        <h2 class="section-title">ค้นหาและดูข้อมูลลูกค้า</h2>
-        <p class="section-desc">ค้นหา, ข้อมูลพื้นฐาน, follow-up, incident, ticket, payment, stage</p>
+      <!-- 1.5 Drilldown -->
+      <div class="subsection" id="analytics-drilldown">
+        <p class="subsection-title">1.5  Drilldown — เจาะดูรายละเอียดเบื้องหลังตัวเลข</p>
+        <table>
+          <thead>
+            <tr>
+              <th>จากรายงาน</th>
+              <th>บอก Claude ว่า</th>
+              <th>ข้อมูลที่ได้</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Funnel</td>
+              <td class="desc">"ขอดูรายชื่อ domain เดือน [เดือน] stage [stage]"</td>
+              <td class="desc">รายชื่อ domain ใน stage นั้น</td>
+            </tr>
+            <tr>
+              <td>Cohort</td>
+              <td class="desc">"drilldown cohort [ประเภท] เดือน [เดือน] คอลัมน์ [M0/M1/Total]"</td>
+              <td class="desc">รายชื่อ domain ใน cohort cell นั้น</td>
+            </tr>
+            <tr>
+              <td>Financial</td>
+              <td class="desc">"ขอดูรายละเอียด financial [topic] เดือน [เดือน]"</td>
+              <td class="desc">breakdown รายการของ topic นั้น</td>
+            </tr>
+            <tr>
+              <td>Conversion</td>
+              <td class="desc">"ขอดูรายละเอียด conversion [topic] เดือน [เดือน]"</td>
+              <td class="desc">breakdown รายการของ topic นั้น</td>
+            </tr>
+            <tr>
+              <td>Retention</td>
+              <td class="desc">"ขอดูรายละเอียด retention [topic] เดือน [เดือน]"</td>
+              <td class="desc">breakdown รายการของ topic นั้น</td>
+            </tr>
+            <tr>
+              <td>Success Call</td>
+              <td class="desc">"drilldown success call สัปดาห์ [W] ปี [YYYY]"</td>
+              <td class="desc">รายการ call แยก domain ของสัปดาห์นั้น</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-    <div class="skill-card">
-      <div class="card-prompts">
-        <p class="prompts-label">ตัวอย่าง prompt — คลิกเพื่อ copy</p>
+    </section>
 
-        <div class="prompt-group">
-          <p class="prompt-group-title">ค้นหาลูกค้า</p>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">🔍</span>
+    <hr class="divider">
+
+    <!-- §2 /crm -->
+    <section class="section" id="crm">
+      <div class="section-header">
+        <span class="section-number">§2</span>
+        <h2 class="section-title">/crm — ข้อมูลลูกค้า</h2>
+        <span class="section-cmd">/crm</span>
+      </div>
+      <p class="section-desc">ค้นหาลูกค้า ดูข้อมูลพื้นฐาน follow-up, incident, ticket, สถานะการชำระ และ stage ใน pipeline</p>
+
+      <!-- 2.1 Prompts -->
+      <div class="subsection" id="crm-prompts">
+        <p class="subsection-title">2.1  ตัวอย่างคำถาม — คลิกเพื่อ copy</p>
+        <div class="prompt-list">
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">ค้นหาลูกค้าชื่อ ABC Technology</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">🌐</span>
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">ดูข้อมูลบริษัท domain: example.co.th</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-        </div>
-
-        <div class="prompt-group">
-          <p class="prompt-group-title">Follow-up & Ticket</p>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">📋</span>
-            <span class="prompt-text">ดู follow-up ล่าสุดของลูกค้า ABC</span>
-            <span class="copy-hint">copy</span>
+          <div class="prompt-row" onclick="copy(this)">
+            <span class="prompt-text">ดู follow-up ล่าสุดของลูกค้า ABC Technology</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">🎫</span>
+          <div class="prompt-row" onclick="copy(this)">
+            <span class="prompt-text">incident ทั้งหมดของลูกค้า example.co.th</span>
+            <span class="prompt-copy">copy</span>
+          </div>
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">ticket เปิดค้างของลูกค้า XYZ มีอะไรบ้าง</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">🎫</span>
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">ค้นหา ticket เรื่องการ export รายงาน</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-        </div>
-
-        <div class="prompt-group">
-          <p class="prompt-group-title">Status & Stage</p>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">💳</span>
-            <span class="prompt-text">สถานะการชำระเงินของ ABC ตอนนี้เป็นยังไง</span>
-            <span class="copy-hint">copy</span>
+          <div class="prompt-row" onclick="copy(this)">
+            <span class="prompt-text">สถานะการชำระเงินของ ABC Technology ตอนนี้</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">📍</span>
-            <span class="prompt-text">ลูกค้า XYZ อยู่ใน stage อะไรของ pipeline</span>
-            <span class="copy-hint">copy</span>
+          <div class="prompt-row" onclick="copy(this)">
+            <span class="prompt-text">ลูกค้า example.co.th อยู่ใน stage อะไรของ pipeline</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">⚠️</span>
-            <span class="prompt-text">ดู incident ทั้งหมดของลูกค้า example.co.th</span>
-            <span class="copy-hint">copy</span>
+          <div class="prompt-row" onclick="copy(this)">
+            <span class="prompt-text">แพ็กเกจและวันหมดอายุของ example.co.th</span>
+            <span class="prompt-copy">copy</span>
           </div>
         </div>
       </div>
 
-      <div class="card-chat">
-        <div class="chat-topbar">
-          <div class="chat-dots">
-            <div class="chat-dot"></div>
-            <div class="chat-dot"></div>
-            <div class="chat-dot"></div>
-          </div>
-          <span class="chat-label">Claude cowork · crm-mcp</span>
-        </div>
-        <div class="chat-body">
-          <div class="chat-bubble bubble-user">ค้นหาลูกค้าชื่อ ABC Technology</div>
-          <div class="chat-bubble bubble-claude">
-            พบ <strong>3 รายการ</strong> ที่ตรงกับ "ABC Technology"<br><br>
-            <ul class="bubble-list">
-              <li><strong>ABC Technology Co., Ltd.</strong> · abc-tech.co.th</li>
-              <li><strong>ABC Technologies (Thailand)</strong> · abctech.th</li>
-              <li><strong>ABC Tech Group</strong> · abcgroup.co.th</li>
-            </ul><br>
-            ต้องการดูรายละเอียดของรายไหนครับ? หรือให้ดู follow-up / ticket ของรายใด?
-          </div>
-          <div class="chat-bubble bubble-user" style="font-size:12.5px;opacity:0.8;">ดูรายที่ 1 ครับ ทั้ง follow-up และ ticket</div>
-          <div class="chat-typing" aria-label="Claude กำลังพิมพ์">
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-          </div>
-        </div>
+      <!-- 2.2 Functions -->
+      <div class="subsection" id="crm-functions">
+        <p class="subsection-title">2.2  ฟังก์ชันที่ใช้ได้</p>
+        <table>
+          <thead>
+            <tr>
+              <th>ฟังก์ชัน</th>
+              <th>ใช้สำหรับ</th>
+              <th>input ที่ต้องการ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ค้นหาลูกค้า</td>
+              <td class="desc">หาจากชื่อบริษัท, domain, หรือชื่อคน</td>
+              <td class="desc">คำค้นหา (บางส่วนก็พอ)</td>
+            </tr>
+            <tr>
+              <td>ข้อมูลพื้นฐาน</td>
+              <td class="desc">แพ็กเกจ, วันหมดอายุ, channel, sizing, ผู้ดูแล</td>
+              <td class="desc">ชื่อบริษัทหรือ domain</td>
+            </tr>
+            <tr>
+              <td>Follow-up</td>
+              <td class="desc">บันทึก follow-up เรียงตามวันที่ล่าสุด พร้อม topic</td>
+              <td class="desc">ชื่อบริษัทหรือ domain</td>
+            </tr>
+            <tr>
+              <td>Incident</td>
+              <td class="desc">รายการ incident พร้อมสถานะและวันที่</td>
+              <td class="desc">ชื่อบริษัทหรือ domain</td>
+            </tr>
+            <tr>
+              <td>Ticket</td>
+              <td class="desc">ค้นหา ticket หรือดูรายละเอียด ticket ของลูกค้า</td>
+              <td class="desc">คำค้น / ticket ID / ชื่อบริษัท</td>
+            </tr>
+            <tr>
+              <td>Payment Status</td>
+              <td class="desc">สถานะการชำระ, ยอดค้าง, ประวัติ</td>
+              <td class="desc">ชื่อบริษัทหรือ domain</td>
+            </tr>
+            <tr>
+              <td>Customer Stage</td>
+              <td class="desc">stage ปัจจุบัน, วันที่เข้า stage, ประวัติการเปลี่ยน</td>
+              <td class="desc">ชื่อบริษัทหรือ domain</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note"><strong>เคล็ดลับ:</strong> ถ้าไม่รู้ customer ID ให้ค้นหาชื่อก่อน Claude จะแสดงรายการแล้วให้เลือก ถ้าพิมพ์ภาษาไทยไม่เจอ ลองพิมพ์ domain หรือชื่อภาษาอังกฤษ</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── /report ────────────────────────────────────── -->
-  <section class="skill-section" id="report">
-    <div class="section-header">
-      <span class="cmd-badge badge-report">/report</span>
-      <div>
-        <h2 class="section-title">Report สำเร็จรูป</h2>
-        <p class="section-desc">Commission, Domain Register, Lead, Domain หมดอายุ, Follow-up Summary</p>
+    <hr class="divider">
+
+    <!-- §3 /report -->
+    <section class="section" id="report">
+      <div class="section-header">
+        <span class="section-number">§3</span>
+        <h2 class="section-title">/report — Report สำเร็จรูป</h2>
+        <span class="section-cmd">/report</span>
       </div>
-    </div>
-    <div class="skill-card">
-      <div class="card-prompts">
-        <p class="prompts-label">ตัวอย่าง prompt — คลิกเพื่อ copy</p>
+      <p class="section-desc">Commission รายเดือน, Domain ที่สมัครใหม่, Lead Report, Domain หมดอายุ, Follow-up Summary</p>
 
-        <div class="prompt-group">
-          <p class="prompt-group-title">Commission</p>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">💰</span>
+      <!-- 3.1 Prompts -->
+      <div class="subsection" id="report-prompts">
+        <p class="subsection-title">3.1  ตัวอย่างคำถาม — คลิกเพื่อ copy</p>
+        <div class="prompt-list">
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">commission เดือน มิ.ย. 2026 ทุก role</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">💰</span>
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">commission เดือน มิ.ย. 2026 เฉพาะ trainer</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-        </div>
-
-        <div class="prompt-group">
-          <p class="prompt-group-title">Domain Register & หมดอายุ</p>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">🌐</span>
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">domain ที่สมัครใหม่เดือน มิ.ย. 2026 มีกี่รายการ</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">⏰</span>
-            <span class="prompt-text">domain ที่จะหมดอายุใน ก.ค.–ส.ค. 2026</span>
-            <span class="copy-hint">copy</span>
+          <div class="prompt-row" onclick="copy(this)">
+            <span class="prompt-text">domain สมัครใหม่ Q2 2026 แยก package top 3</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">⏰</span>
-            <span class="prompt-text">รายชื่อ domain หมดอายุแล้วทั้งหมด พร้อมผู้ดูแล</span>
-            <span class="copy-hint">copy</span>
-          </div>
-        </div>
-
-        <div class="prompt-group">
-          <p class="prompt-group-title">Lead & Follow-up</p>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">📥</span>
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">lead report เดือน มิ.ย. 2026 แยก source</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">📅</span>
+          <div class="prompt-row" onclick="copy(this)">
+            <span class="prompt-text">domain ที่จะหมดอายุใน ก.ค.–ส.ค. 2026</span>
+            <span class="prompt-copy">copy</span>
+          </div>
+          <div class="prompt-row" onclick="copy(this)">
+            <span class="prompt-text">รายชื่อ domain หมดอายุแล้วทั้งหมด พร้อมผู้ดูแล</span>
+            <span class="prompt-copy">copy</span>
+          </div>
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">follow-up ที่นัดสัปดาห์นี้ สรุปเป็นยังไงบ้าง</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
-          <div class="prompt-item" onclick="copyPrompt(this)">
-            <span class="prompt-icon">📅</span>
+          <div class="prompt-row" onclick="copy(this)">
             <span class="prompt-text">follow-up เดือน มิ.ย. แยก agent แต่ละคน ทำไปเท่าไหร่</span>
-            <span class="copy-hint">copy</span>
+            <span class="prompt-copy">copy</span>
           </div>
         </div>
       </div>
 
-      <div class="card-chat">
-        <div class="chat-topbar">
-          <div class="chat-dots">
-            <div class="chat-dot"></div>
-            <div class="chat-dot"></div>
-            <div class="chat-dot"></div>
+      <!-- 3.2 Parameters -->
+      <div class="subsection" id="report-params">
+        <p class="subsection-title">3.2  พารามิเตอร์แยกตาม report</p>
+
+        <div class="table-cols">
+          <div>
+            <table>
+              <thead><tr><th colspan="2">Commission</th></tr></thead>
+              <tbody>
+                <tr><td class="val">month</td><td class="desc">YYYY-MM (เช่น 2026-06)</td></tr>
+                <tr><td class="val">role: all</td><td class="desc">ทุก role (default)</td></tr>
+                <tr><td class="val">role: sale</td><td class="desc">เฉพาะ Sales</td></tr>
+                <tr><td class="val">role: trainer</td><td class="desc">เฉพาะ Trainer</td></tr>
+                <tr><td class="val">role: sale_co</td><td class="desc">เฉพาะ Sale Co.</td></tr>
+              </tbody>
+            </table>
           </div>
-          <span class="chat-label">Claude cowork · analytics-mcp</span>
+          <div>
+            <table>
+              <thead><tr><th colspan="2">Domain Register</th></tr></thead>
+              <tbody>
+                <tr><td class="val">date_from</td><td class="desc">YYYY-MM-DD</td></tr>
+                <tr><td class="val">date_to</td><td class="desc">YYYY-MM-DD</td></tr>
+              </tbody>
+            </table>
+
+            <table style="margin-top: 16px;">
+              <thead><tr><th colspan="2">Domain หมดอายุ</th></tr></thead>
+              <tbody>
+                <tr><td class="val">date_from</td><td class="desc">optional</td></tr>
+                <tr><td class="val">date_to</td><td class="desc">optional — ถ้าไม่ระบุ = ทั้งหมด</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="chat-body">
-          <div class="chat-bubble bubble-user">domain ที่จะหมดอายุใน ก.ค.–ส.ค. 2026</div>
-          <div class="chat-bubble bubble-claude">
-            ดึงข้อมูล domain หมดอายุ ก.ค.–ส.ค. 2026…<br><br>
-            พบ <strong>23 รายการ</strong><br>
-            หมดใน ก.ค.: <strong>14 ราย</strong> · หมดใน ส.ค.: <strong>9 ราย</strong><br><br>
-            <ul class="bubble-list">
-              <li>ตัวแทน A ดูแล: 8 ราย</li>
-              <li>ตัวแทน B ดูแล: 6 ราย</li>
-              <li>ไม่มีผู้ดูแล: 9 ราย ⚠️</li>
-            </ul><br>
-            ต้องการ list รายชื่อทั้งหมดไหมครับ?
+
+        <div style="margin-top: 16px;">
+          <table>
+            <thead><tr><th colspan="3">Follow-up Summary</th></tr></thead>
+            <tbody>
+              <tr><td class="val">followup_from</td><td class="desc">YYYY-MM-DD (วันที่นัด)</td><td class="desc">กรองตามวันที่นัด ไม่ใช่วันที่สร้าง</td></tr>
+              <tr><td class="val">followup_to</td><td class="desc">YYYY-MM-DD (วันที่นัด)</td><td class="desc"></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="note"><strong>timeout:</strong> ถ้าไม่ระบุ date range อาจ timeout ควรระบุช่วงไม่เกิน 3 เดือนต่อครั้ง</p>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- §4 การแปลงวันที่ -->
+    <section class="section" id="dates">
+      <div class="section-header">
+        <span class="section-number">§4</span>
+        <h2 class="section-title">การแปลงวันที่</h2>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">ชื่อย่อเดือนไทย → รหัส API</p>
+        <div class="month-grid">
+          <div class="month-cell"><span class="month-abbr">ม.ค.</span><span class="month-val">01</span></div>
+          <div class="month-cell"><span class="month-abbr">ก.พ.</span><span class="month-val">02</span></div>
+          <div class="month-cell"><span class="month-abbr">มี.ค.</span><span class="month-val">03</span></div>
+          <div class="month-cell"><span class="month-abbr">เม.ย.</span><span class="month-val">04</span></div>
+          <div class="month-cell"><span class="month-abbr">พ.ค.</span><span class="month-val">05</span></div>
+          <div class="month-cell"><span class="month-abbr">มิ.ย.</span><span class="month-val">06</span></div>
+          <div class="month-cell"><span class="month-abbr">ก.ค.</span><span class="month-val">07</span></div>
+          <div class="month-cell"><span class="month-abbr">ส.ค.</span><span class="month-val">08</span></div>
+          <div class="month-cell"><span class="month-abbr">ก.ย.</span><span class="month-val">09</span></div>
+          <div class="month-cell"><span class="month-abbr">ต.ค.</span><span class="month-val">10</span></div>
+          <div class="month-cell"><span class="month-abbr">พ.ย.</span><span class="month-val">11</span></div>
+          <div class="month-cell"><span class="month-abbr">ธ.ค.</span><span class="month-val">12</span></div>
+        </div>
+        <p class="note" style="margin-top: 12px;">ไม่จำเป็นต้องจำ — พิมพ์ชื่อเดือนไทยได้เลย Claude แปลงให้อัตโนมัติ<br>
+        <strong>ปีพุทธศักราช:</strong> ปี 2568 = 2025 · ปี 2569 = 2026</p>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">รูปแบบ Quarter และ ISO Week</p>
+        <div class="table-cols">
+          <div>
+            <table>
+              <thead><tr><th>Quarter</th><th>ช่วงเดือน</th></tr></thead>
+              <tbody>
+                <tr><td>Q1</td><td class="desc">ม.ค. – มี.ค.</td></tr>
+                <tr><td>Q2</td><td class="desc">เม.ย. – มิ.ย.</td></tr>
+                <tr><td>Q3</td><td class="desc">ก.ค. – ก.ย.</td></tr>
+                <tr><td>Q4</td><td class="desc">ต.ค. – ธ.ค.</td></tr>
+              </tbody>
+            </table>
           </div>
-          <div class="chat-bubble bubble-user" style="font-size:12.5px;opacity:0.8;">ขอรายชื่อที่ไม่มีผู้ดูแลก่อนครับ</div>
-          <div class="chat-typing" aria-label="Claude กำลังพิมพ์">
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
+          <div>
+            <table>
+              <thead><tr><th>คำพูด</th><th>ISO Week</th></tr></thead>
+              <tbody>
+                <tr><td class="desc">สัปดาห์ที่ 1 ปี 2026</td><td>2026-W01</td></tr>
+                <tr><td class="desc">สัปดาห์ที่ 27 ปี 2026</td><td>2026-W27</td></tr>
+                <tr><td class="desc">ปัจจุบัน (ก.ค. 2026)</td><td class="desc">ประมาณ W27</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── /cheatsheet ────────────────────────────────── -->
-  <section class="skill-section" id="cheatsheet">
-    <div class="section-header">
-      <span class="cmd-badge badge-cheatsheet">/cheatsheet</span>
-      <div>
-        <h2 class="section-title">เปิดคู่มือนี้</h2>
-        <p class="section-desc">พิมพ์ /cheatsheet ใน Claude cowork เพื่อเปิดหน้านี้ในเบราว์เซอร์</p>
+    <hr class="divider">
+
+    <!-- §5 เคล็ดลับ -->
+    <section class="section" id="tips">
+      <div class="section-header">
+        <span class="section-number">§5</span>
+        <h2 class="section-title">เคล็ดลับการใช้งาน</h2>
       </div>
-    </div>
-    <div class="skill-card" style="grid-template-columns: 1fr;">
-      <div class="card-prompts" style="display: flex; gap: 32px; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 200px;">
-          <p class="prompts-label">เมื่อไหร่ควรเปิดคู่มือ</p>
-          <div class="prompt-item" style="cursor: default; pointer-events: none;">
-            <span class="prompt-icon">❓</span>
-            <span class="prompt-text">ไม่แน่ใจว่าจะถามยังไง → เปิดดู example prompt</span>
-          </div>
-          <div class="prompt-item" style="cursor: default; pointer-events: none;">
-            <span class="prompt-icon">🆕</span>
-            <span class="prompt-text">มีคนใหม่เข้าทีม → ส่งลิงก์หน้านี้ให้</span>
-          </div>
-          <div class="prompt-item" style="cursor: default; pointer-events: none;">
-            <span class="prompt-icon">📌</span>
-            <span class="prompt-text">ลืม parameter → ดู section ที่เกี่ยวข้อง</span>
-          </div>
-        </div>
-        <div style="flex: 1; min-width: 200px;">
-          <p class="prompts-label">Skills ที่มีทั้งหมด</p>
-          <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 4px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="cmd-badge badge-analytics" style="font-size:12px; padding: 4px 10px;">/analytics</span>
-              <span style="font-size:13px; color: var(--text-muted);">Funnel · Cohort · Key Metrics · Success Call</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="cmd-badge badge-crm" style="font-size:12px; padding: 4px 10px;">/crm</span>
-              <span style="font-size:13px; color: var(--text-muted);">ค้นหาลูกค้า · Follow-up · Ticket · Stage</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="cmd-badge badge-report" style="font-size:12px; padding: 4px 10px;">/report</span>
-              <span style="font-size:13px; color: var(--text-muted);">Commission · Domain · Lead · Follow-up</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="cmd-badge badge-cheatsheet" style="font-size:12px; padding: 4px 10px;">/cheatsheet</span>
-              <span style="font-size:13px; color: var(--text-muted);">เปิดคู่มือนี้</span>
-            </div>
-          </div>
-        </div>
+
+      <ul class="tip-list">
+        <li>
+          <span class="tip-n">01</span>
+          <span class="tip-body"><strong>ไม่ต้องพิมพ์ /skill ก็ได้</strong> — ถามตรงๆ ว่า "ดู funnel เดือนนี้" หรือ "หาลูกค้าชื่อ ABC" Claude เลือก skill ที่เหมาะสมให้อัตโนมัติ /skill ใช้เมื่ออยากบอกให้ชัดเจนว่าต้องการทำอะไร</span>
+        </li>
+        <li>
+          <span class="tip-n">02</span>
+          <span class="tip-body"><strong>ถาม drilldown ต่อได้ทันที</strong> — หลังได้ตัวเลขแล้ว พิมพ์ต่อในช่อง chat เดิม เช่น "ขอดูรายละเอียดของเดือน เม.ย." Claude จะจำ context ไว้และ drilldown ให้</span>
+        </li>
+        <li>
+          <span class="tip-n">03</span>
+          <span class="tip-body"><strong>บอกบทบาทถ้าต้องการสรุปแบบเฉพาะ</strong> — เช่น "สรุปให้ฝ่ายบริหาร" หรือ "ต้องการข้อมูลดิบสำหรับ Excel" จะได้ format ที่ต่างกัน</span>
+        </li>
+        <li>
+          <span class="tip-n">04</span>
+          <span class="tip-body"><strong>ค้นหาลูกค้า — พิมพ์บางส่วนก็พอ</strong> — ระบบใช้ LIKE search ดังนั้น "ABC" จะพบ "ABC Technology", "ABC Group" ฯลฯ ถ้าไม่เจอจากชื่อบริษัท ลองพิมพ์ domain หรือชื่อคนแทน</span>
+        </li>
+        <li>
+          <span class="tip-n">05</span>
+          <span class="tip-body"><strong>Report ที่ดึง range กว้าง อาจช้า</strong> — analytics report แนะนำระบุช่วงไม่เกิน 6 เดือน ส่วน /report ที่ไม่มี date range (เช่น domain หมดอายุทั้งหมด) อาจใช้เวลา 30–60 วินาที</span>
+        </li>
+        <li>
+          <span class="tip-n">06</span>
+          <span class="tip-body"><strong>ข้อมูลทั้งหมดเป็น real-time จาก ACP production</strong> — ไม่มี cache ดังนั้นตัวเลขที่ได้คือข้อมูล ณ เวลาที่ถาม ถ้าต้องการ snapshot สำหรับ report ให้ copy ผลลัพธ์ออกมาเก็บไว้</span>
+        </li>
+        <li>
+          <span class="tip-n">07</span>
+          <span class="tip-body"><strong>S + M + L = All Size เสมอ</strong> — Sizing S = 1–75 คน (รวม domain ที่ไม่ระบุขนาดบริษัท), M = 76–200 คน, L = 201+ คน ถ้าบวกทั้งสามจะได้ All Size</span>
+        </li>
+        <li>
+          <span class="tip-n">08</span>
+          <span class="tip-body"><strong>เปิดคู่มือนี้ได้ตลอด</strong> — พิมพ์ <code>/cheatsheet</code> ใน Claude cowork เมื่อไหรก็ได้ Claude จะเปิดไฟล์นี้ในเบราว์เซอร์ให้</span>
+        </li>
+      </ul>
+    </section>
+
+    <hr class="divider">
+
+    <!-- §6 ติดตั้ง -->
+    <section class="section" id="install">
+      <div class="section-header">
+        <span class="section-number">§6</span>
+        <h2 class="section-title">ติดตั้ง Plugin</h2>
       </div>
-    </div>
-  </section>
 
-</main>
+      <div class="subsection">
+        <p class="subsection-title">ขั้นตอนติดตั้ง (ครั้งแรก)</p>
+        <p style="font-size: 13.5px; color: var(--muted); margin-bottom: 14px;">ต้องมี Claude Code CLI ติดตั้งแล้ว รัน 2 คำสั่งนี้ใน terminal:</p>
+        <table>
+          <thead><tr><th>ลำดับ</th><th>คำสั่ง</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; cursor: pointer;" onclick="copy(this)" title="คลิกเพื่อ copy">claude plugin marketplace add https://github.com/HumanSoftTH/hms-cowork-skills</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; cursor: pointer;" onclick="copy(this)" title="คลิกเพื่อ copy">claude plugin install hms-cowork-skills</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note">หลัง install เสร็จ restart Claude แล้วใช้งานได้เลย · อัปเดต: <code>claude plugin update hms-cowork-skills</code></p>
+      </div>
 
-<footer class="footer">
-  <p>ACP Cowork Skills · HumanSoft · ข้อมูลดึงจาก ACP production real-time ผ่าน analytics-mcp &amp; crm-mcp</p>
-</footer>
+      <div class="subsection">
+        <p class="subsection-title">MCP Servers ที่ต้องการ</p>
+        <table>
+          <thead><tr><th>Server</th><th>ใช้โดย</th><th>ติดต่อ</th></tr></thead>
+          <tbody>
+            <tr><td>acp-analytics</td><td class="desc">/analytics, /report</td><td class="desc">ทีม Dev</td></tr>
+            <tr><td>acp-crm</td><td class="desc">/crm</td><td class="desc">ทีม Dev</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-<div class="copied-toast" id="toast" role="status" aria-live="polite">copied ✓</div>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">copied</div>
 
 <script>
-  function copyPrompt(el) {
-    const text = el.querySelector('.prompt-text').textContent.trim();
+  function copy(el) {
+    const t = el.querySelector ? el.querySelector('.prompt-text') : el;
+    const text = (t || el).textContent.trim();
     navigator.clipboard.writeText(text).then(() => {
-      const t = document.getElementById('toast');
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 1800);
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1600);
     });
   }
 </script>
