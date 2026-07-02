@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "hms-cowork-skills",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "ACP Cowork Skills — analytics, CRM, reports, and cheatsheet for HumanSoft non-dev users",
   "author": {
     "name": "HumanSoft",
